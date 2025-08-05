@@ -9,7 +9,7 @@ const data = {
             direction: "long",
             entryPrice: 114415.4,   // Your entry price
             quantity: 0.000003998,      // Quantity of coins
-            currentPrice: 114373.5 // Current market price
+            currentPrice: 114740.9 // Current market price
         },
         // {
         //     pair: "ETH/USDT",
@@ -135,7 +135,7 @@ renderSpotInvestments();
 const capitalData = [
     { date: "2025-08-03", capital: 4.2 },
     { date: "2025-08-04", capital: 4.1 },
-    // { date: "2025-02-07", capital: 28.9 },
+    { date: "2025-08-05", capital: 4.19 },
     // { date: "2025-02-08", capital: 28.7 },
     // { date: "2025-02-09", capital: 28.7 },
     // { date: "2025-02-10", capital: 29.1 },

@@ -159,3 +159,20 @@ body.dark .apexcharts-tooltip {
         font-size: 0.8rem;
     }
 }
+
+.twitter-link {
+    color: #1da1f2;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.twitter-link:hover {
+    text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+    .trade-item {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}

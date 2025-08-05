@@ -253,8 +253,8 @@ renderChart();
 const toggleBtn = document.getElementById('themeToggle');
 const prefersDarkScheme = window.matchMedia("(prefers-color-scheme: dark)");
 
-if (localStorage.getItem('theme') === 'dark' || 
-   (!localStorage.getItem('theme') && prefersDarkScheme.matches)) {
+if (localStorage.getItem('theme') === 'dark' ||
+    (!localStorage.getItem('theme') && prefersDarkScheme.matches)) {
     document.body.classList.add('dark');
     toggleBtn.innerHTML = '<i class="fas fa-sun"></i> Light Mode';
 }
@@ -263,10 +263,49 @@ toggleBtn.addEventListener('click', () => {
     document.body.classList.toggle('dark');
     const isDark = document.body.classList.contains('dark');
 
-    toggleBtn.innerHTML = isDark 
+    toggleBtn.innerHTML = isDark
         ? '<i class="fas fa-sun"></i> Light Mode'
         : '<i class="fas fa-moon"></i> Dark Mode';
 
     localStorage.setItem('theme', isDark ? 'dark' : 'light');
 });
 
+const tradeHistory = [
+    {
+        date: "2025-08-01",
+        pair: "BTC/USDT",
+        direction: "long",
+        entryPrice: 113000,
+        exitPrice: 114200,
+        result: "+1.06%",
+        twitterLink: "https://x.com/areebithink/status/1952310045871648955"
+    },
+    // {
+    //     date: "2025-07-30",
+    //     pair: "ETH/USDT",
+    //     direction: "short",
+    //     entryPrice: 3000,
+    //     exitPrice: 2900,
+    //     result: "+3.33%",
+    //     twitterLink: "https://x.com/areebithink/status/1952310045871648955"
+    // },
+];
+
+const renderTradeHistory = () => {
+    const historyHTML = tradeHistory.map(trade => `
+            <div class="trade-item">
+                <div>
+                    <strong>${trade.date}</strong> — ${trade.pair} 
+                    <span class="trade-direction ${trade.direction}">${trade.direction.toUpperCase()}</span>
+                    <br>
+                    Entry: ${trade.entryPrice}, Exit: ${trade.exitPrice} — <strong>${trade.result}</strong>
+                </div>
+                <div>
+                    <a href="${trade.twitterLink}" target="_blank" class="twitter-link">View Tweet</a>
+                </div>
+            </div>
+        `).join('');
+    document.getElementById('tradeHistory').innerHTML = historyHTML;
+};
+
+renderTradeHistory();

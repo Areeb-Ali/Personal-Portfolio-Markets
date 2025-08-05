@@ -7,20 +7,23 @@ const data = {
         {
             pair: "BTC/USDT",
             direction: "long",
-            entryPrice: 114415.4,   // Your entry price
-            quantity: 0.000003998,      // Quantity of coins
-            currentPrice: 114740.9 // Current market price
+            entryPrice: 114415.4,
+            leverage: 100,
+            marginUsed: 0.49, // or calculate from quantity
+            currentPrice: 113016
         },
-        // {
-        //     pair: "ETH/USDT",
-        //     direction: "short",
-        //     entryPrice: 2500,
-        //     quantity: 10,
-        //     currentPrice: 2455
-        // }
-    ],
+        {
+            pair: "BTC/USDT",
+            direction: "long",
+            entryPrice: 113060.6,
+            leverage: 100,
+            marginUsed: 0.49,
+            currentPrice: 113016
+        }
+    ]
+    ,
     spotInvestments: [
-        { asset: "USDT", quantity: 3.73, entryPrice: 1, currentPrice: 1 },
+        { asset: "USDT", quantity: 3.2538, entryPrice: 1, currentPrice: 1 },
         // { asset: "TIA", quantity: 0.61, entryPrice: 3.2, currentPrice: 3.595 },
         // { asset: "AVAX", quantity: 0.05, entryPrice: 26.977, currentPrice: 25.344},
         // { asset: "BKN", quantity: 11.66, entryPrice: 0.25707, currentPrice: 0.23342 },
@@ -39,6 +42,20 @@ const formatMoney = (amount) => {
     }).format(amount);
 };
 
+const calculatePnlFromMargin = (entry, current, margin, leverage, isShort = false) => {
+    const quantity = (margin * leverage) / entry;
+    const priceDiff = isShort ? entry - current : current - entry;
+    const pnlAmount = priceDiff * quantity;
+    const pnlPercent = ((priceDiff / entry) * leverage * 100).toFixed(2);
+
+    return {
+        amount: pnlAmount,
+        percent: Math.abs(pnlPercent),
+        isProfit: pnlAmount >= 0
+    };
+};
+
+
 const calculatePnl = (entry, current, quantity, isShort = false) => {
     const priceDiff = isShort ? entry - current : current - entry;
     const pnlAmount = priceDiff * quantity;
@@ -56,15 +73,22 @@ const calculateTotalValue = () => {
     const totalSpot = data.spotInvestments.reduce((acc, item) =>
         acc + (item.quantity * item.currentPrice), 0);
 
-    // Calculate total trade value (including P&L)
+    // Calculate margin + PnL only (NOT full leveraged position)
     const totalTrades = data.activeTrades.reduce((acc, trade) => {
-        const pnl = calculatePnl(trade.entryPrice, trade.currentPrice,
-            trade.quantity, trade.direction === 'short');
-        return acc + (trade.quantity * trade.currentPrice);
+        const pnl = calculatePnlFromMargin(
+            trade.entryPrice,
+            trade.currentPrice,
+            trade.marginUsed,
+            trade.leverage,
+            trade.direction === 'short'
+        );
+        return acc + trade.marginUsed + pnl.amount;
     }, 0);
 
     return totalSpot + totalTrades;
 };
+
+
 
 const updateTotals = () => {
     const totalValue = calculateTotalValue();
@@ -80,29 +104,38 @@ const updateTotals = () => {
 
 const renderTrades = () => {
     const tradesHTML = data.activeTrades.map(trade => {
-        const pnl = calculatePnl(trade.entryPrice, trade.currentPrice,
-            trade.quantity, trade.direction === 'short');
-        const currentValue = trade.quantity * trade.currentPrice;
+        const pnl = calculatePnlFromMargin(
+            trade.entryPrice,
+            trade.currentPrice,
+            trade.marginUsed,
+            trade.leverage,
+            trade.direction === 'short'
+        );
+
+        const quantity = (trade.marginUsed * trade.leverage) / trade.entryPrice;
+        const currentValue = quantity * trade.currentPrice;
 
         return `
-                    <div class="trade-item">
-                        <div>
-                            <span class="trade-direction ${trade.direction}">
-                                ${trade.direction.toUpperCase()}
-                            </span>
-                            ${trade.pair}
-                        </div>
-                        <div>
-                            <div>${formatMoney(currentValue)}</div>
-                            <div class="${pnl.isProfit ? 'positive' : 'negative'}">
-                                ${pnl.isProfit ? '+' : '-'}${formatMoney(Math.abs(pnl.amount))} (${pnl.percent}%)
-                            </div>
-                        </div>
+            <div class="trade-item">
+                <div>
+                    <span class="trade-direction ${trade.direction}">
+                        ${trade.direction.toUpperCase()}
+                    </span> ${trade.pair}<br>
+                    Margin: $${trade.marginUsed}, Leverage: ${trade.leverage}x
+                </div>
+                <div>
+                    <div>${formatMoney(currentValue)}</div>
+                    <div class="${pnl.isProfit ? 'positive' : 'negative'}">
+                        ${pnl.isProfit ? '+' : '-'}${formatMoney(Math.abs(pnl.amount))} (${pnl.percent}%)
                     </div>
-                `;
+                </div>
+            </div>
+        `;
     }).join('');
+
     document.getElementById('activeTrades').innerHTML = tradesHTML;
 };
+
 
 const renderSpotInvestments = () => {
     const spotHTML = data.spotInvestments.map(asset => {
@@ -135,7 +168,7 @@ renderSpotInvestments();
 const capitalData = [
     { date: "2025-08-03", capital: 4.2 },
     { date: "2025-08-04", capital: 4.1 },
-    { date: "2025-08-05", capital: 4.19 },
+    { date: "2025-08-05", capital: 3.6 },
     // { date: "2025-02-08", capital: 28.7 },
     // { date: "2025-02-09", capital: 28.7 },
     // { date: "2025-02-10", capital: 29.1 },
@@ -272,7 +305,7 @@ toggleBtn.addEventListener('click', () => {
 
 const tradeHistory = [
     {
-        date: "2025-08-01",
+        date: "2025-08-04",
         pair: "BTC/USDT",
         direction: "long",
         entryPrice: 113000,
@@ -281,10 +314,10 @@ const tradeHistory = [
         twitterLink: "https://x.com/areebithink/status/1952310045871648955"
     },
     // {
-    //     date: "2025-07-30",
-    //     pair: "ETH/USDT",
-    //     direction: "short",
-    //     entryPrice: 3000,
+    //     date: "2025-08-05",
+    //     pair: "BTC/USDT",
+    //     direction: "long",
+    //     entryPrice: 113060.6,
     //     exitPrice: 2900,
     //     result: "+3.33%",
     //     twitterLink: "https://x.com/areebithink/status/1952310045871648955"

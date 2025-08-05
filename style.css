@@ -176,3 +176,8 @@ body.dark .apexcharts-tooltip {
         align-items: flex-start;
     }
 }
+
+.trade-item div {
+    font-size: 0.9rem;
+    line-height: 1.4;
+}

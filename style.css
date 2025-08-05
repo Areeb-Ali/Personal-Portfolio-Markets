@@ -87,11 +87,31 @@ body {
 }
 
 .chart-container {
+    width: 100%;
     height: 400px;
-    margin-top: 20px;
+    max-width: 100%;
+    overflow: hidden; /* ❌ No scrollbars */
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 @media (max-width: 768px) {
+    .chart-container {
+        height: 300px;
+    }
+}
+
+
+
+@media (max-width: 768px) {
+    .chart-container {
+        min-height: 250px;
+    }
+}
+
+
+/* @media (max-width: 768px) {
     .container {
         padding: 10px;
     }
@@ -99,7 +119,7 @@ body {
     .metric-value {
         font-size: 1.5rem;
     }
-}
+} */
 
 /* ========================== */
 /* THEME TOGGLE BUTTON STYLES */
@@ -180,4 +200,117 @@ body.dark .apexcharts-tooltip {
 .trade-item div {
     font-size: 0.9rem;
     line-height: 1.4;
+}
+
+/* NEW - header layout upgrade */
+.header {
+    padding: 2rem 0;
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+    position: relative;
+}
+
+@media (min-width: 768px) {
+    .header {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+}
+
+.theme-toggle {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+@media (min-width: 768px) {
+    .theme-toggle {
+        position: static;
+    }
+}
+
+/* Add arrows and make P&L bold */
+#dailyPnl {
+    font-weight: bold;
+    font-size: 1.1rem;
+}
+
+.positive::before {
+    content: '▲ ';
+    color: var(--profit);
+}
+
+.negative::before {
+    content: '▼ ';
+    color: var(--loss);
+}
+
+/* Trade list padding fix */
+.trade-item {
+    padding: 12px 8px;
+}
+
+/* Chart mobile fix */
+/* .chart-container {
+    height: 400px;
+    max-width: 100%;
+    overflow-x: auto;
+} */
+
+@media (max-width: 768px) {
+    .chart-container {
+        height: 300px;
+    }
+}
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    padding: 2rem 0;
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 2rem;
+}
+
+.header-left {
+    flex: 1;
+    min-width: 250px;
+}
+
+.header-right {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.header h1 {
+    font-size: 1.8rem;
+    margin-bottom: 0.3rem;
+}
+
+.header h2 {
+    font-size: 1.2rem;
+    margin-bottom: 0.3rem;
+}
+
+@media (max-width: 768px) {
+    .header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .header-right {
+        width: 100%;
+        justify-content: flex-start;
+    }
+
+    .header h1 {
+        font-size: 1.4rem;
+    }
 }

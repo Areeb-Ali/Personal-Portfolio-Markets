@@ -204,6 +204,7 @@ const renderChart = () => {
         chart: {
             type: 'line',
             height: '100%',
+            width: '100%', // 👈 ADD THIS LINE
             toolbar: {
                 show: true,
                 tools: {
@@ -227,54 +228,54 @@ const renderChart = () => {
             labels: {
                 formatter: function (value) {
                     return new Date(value).toLocaleDateString();
-                }
+}
             }
         },
-        yaxis: {
-            labels: {
-                formatter: function (value) {
-                    return `$${value.toLocaleString()}`;
-                }
-            },
-            title: {
-                text: 'Capital Value (USD)'
-            }
-        },
-        stroke: {
-            curve: 'smooth',
-            width: 3
-        },
-        colors: ['#16c784'],
-        tooltip: {
-            enabled: true,
-            x: {
-                formatter: function (value) {
-                    return new Date(value).toLocaleDateString();
-                }
-            },
-            y: {
-                formatter: function (value) {
-                    return `$${value.toLocaleString()}`;
-                }
-            }
-        },
-        markers: {
-            size: 5,
-            colors: ['#16c784'],
-            strokeColors: '#fff',
-            strokeWidth: 2,
-            hover: {
-                size: 7
-            }
-        },
-        grid: {
-            borderColor: '#f1f1f1',
-            strokeDashArray: 5
+yaxis: {
+    labels: {
+        formatter: function (value) {
+            return `$${value.toLocaleString()}`;
         }
+    },
+    title: {
+        text: 'Capital Value (USD)'
+    }
+},
+stroke: {
+    curve: 'smooth',
+        width: 3
+},
+colors: ['#16c784'],
+    tooltip: {
+    enabled: true,
+        x: {
+        formatter: function (value) {
+            return new Date(value).toLocaleDateString();
+        }
+    },
+    y: {
+        formatter: function (value) {
+            return `$${value.toLocaleString()}`;
+        }
+    }
+},
+markers: {
+    size: 5,
+        colors: ['#16c784'],
+            strokeColors: '#fff',
+                strokeWidth: 2,
+                    hover: {
+        size: 7
+    }
+},
+grid: {
+    borderColor: '#f1f1f1',
+        strokeDashArray: 5
+}
     };
 
-    const chart = new ApexCharts(document.querySelector("#chart"), options);
-    chart.render();
+const chart = new ApexCharts(document.querySelector("#chart"), options);
+chart.render();
 };
 
 // Initial render

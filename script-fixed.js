@@ -3,25 +3,25 @@ const data = {
     lastUpdated: new Date().toLocaleString(),
     startingCapital: 4.2,
     activeTrades: [
-        {
-            pair: "BTC/USDT",
-            direction: "long",
-            entryPrice: 114415.4,
-            leverage: 100,
-            marginUsed: 0.49,
-            currentPrice: 114364
-        },
-        {
-            pair: "BTC/USDT",
-            direction: "long",
-            entryPrice: 113060.6,
-            leverage: 100,
-            marginUsed: 0.49,
-            currentPrice: 114364
-        }
+        // {
+        //     pair: "BTC/USDT",
+        //     direction: "long",
+        //     entryPrice: 114415.4,
+        //     leverage: 100,
+        //     marginUsed: 0.46,
+        //     currentPrice: 114866.9
+        // },
+        // {
+        //     pair: "BTC/USDT",
+        //     direction: "long",
+        //     entryPrice: 113060.6,
+        //     leverage: 100,
+        //     marginUsed: 0.43,
+        //     currentPrice: 114866.9
+        // }
     ],
     spotInvestments: [
-        { asset: "USDT", quantity: 3.2538, entryPrice: 1, currentPrice: 1 }
+        { asset: "USDT", quantity: 5.03, entryPrice: 1, currentPrice: 1 }
     ]
 };
 // ========== END OF DATA INPUT ========== //
@@ -143,7 +143,7 @@ const capitalData = [
     { date: "2025-08-03", capital: 4.2 },
     { date: "2025-08-04", capital: 4.1 },
     { date: "2025-08-05", capital: 3.6 },
-    { date: "2025-08-06", capital: 4.7 }
+    { date: "2025-08-06", capital: 5 }
 ];
 
 const renderChart = () => {
@@ -232,10 +232,19 @@ const tradeHistory = [
         date: "2025-08-04",
         pair: "BTC/USDT",
         direction: "long",
-        entryPrice: 113000,
-        exitPrice: 114200,
-        result: "+1.06%",
+        entryPrice: 114415,
+        exitPrice: 114866,
+        result: "+39.46%",
         twitterLink: "https://x.com/areebithink/status/1952310045871648955"
+    },
+    {
+        date: "2025-08-05",
+        pair: "BTC/USDT",
+        direction: "long",
+        entryPrice: 113060,
+        exitPrice: 114866,
+        result: "+159.76%",
+        twitterLink: "https://x.com/areebithink/status/1952753924705784053"
     }
 ];
 

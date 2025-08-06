@@ -9,7 +9,7 @@ const data = {
             entryPrice: 114415.4,
             leverage: 100,
             marginUsed: 0.49,
-            currentPrice: 113016
+            currentPrice: 114364
         },
         {
             pair: "BTC/USDT",
@@ -17,7 +17,7 @@ const data = {
             entryPrice: 113060.6,
             leverage: 100,
             marginUsed: 0.49,
-            currentPrice: 113016
+            currentPrice: 114364
         }
     ],
     spotInvestments: [
@@ -142,20 +142,20 @@ renderSpotInvestments();
 const capitalData = [
     { date: "2025-08-03", capital: 4.2 },
     { date: "2025-08-04", capital: 4.1 },
-    { date: "2025-08-05", capital: 3.6 }
+    { date: "2025-08-05", capital: 3.6 },
+    { date: "2025-08-06", capital: 4.7 }
 ];
 
 const renderChart = () => {
     const seriesData = capitalData.map(item => ({
-        x: new Date(item.date).getTime(),
+        x: new Date(item.date).getTime(), // Make sure this is a timestamp
         y: item.capital
     }));
 
     const options = {
         chart: {
             type: 'line',
-            height: '100%',
-            width: '100%',
+            height: 350, // use fixed height
             toolbar: {
                 show: true
             }
@@ -165,11 +165,14 @@ const renderChart = () => {
             data: seriesData
         }],
         xaxis: {
-            type: 'datetime'
+            type: 'datetime',
+            labels: {
+                datetimeUTC: false
+            }
         },
         yaxis: {
             labels: {
-                formatter: (value) => `$${value.toLocaleString()}`
+                formatter: (value) => `$${value.toFixed(2)}`
             },
             title: {
                 text: 'Capital Value (USD)'
@@ -185,14 +188,23 @@ const renderChart = () => {
                 format: 'yyyy-MM-dd'
             },
             y: {
-                formatter: value => `$${value.toLocaleString()}`
+                formatter: value => `$${value.toFixed(2)}`
             }
-        }
+        },
+        responsive: [{
+            breakpoint: 768,
+            options: {
+                chart: {
+                    height: 300
+                }
+            }
+        }]
     };
 
     const chart = new ApexCharts(document.querySelector("#chart"), options);
     chart.render();
 };
+
 
 renderChart();
 

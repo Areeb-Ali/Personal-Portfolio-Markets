@@ -248,7 +248,7 @@ const tradeHistory = [
         twitterLink: "https://x.com/areebithink/status/1952753924705784053"
     },
     {
-        date: "2025-08-06",
+        date: "2025-08-07",
         pair: "BTC/USDT",
         direction: "long",
         entryPrice: 114993,

@@ -6,10 +6,10 @@ const data = {
         {
             pair: "BTC/USDT",
             direction: "long",
-            entryPrice: 118838,
+            entryPrice: 118244,
             leverage: 100,
-            marginUsed: 0.72,
-            currentPrice: 117889
+            marginUsed: 1.44,
+            currentPrice: 117670
         },
         // {
         //     pair: "BTC/USDT",
@@ -21,7 +21,7 @@ const data = {
         // }
     ],
     spotInvestments: [
-        { asset: "USDT", quantity: 6.88, entryPrice: 1, currentPrice: 1 }
+        { asset: "USDT", quantity: 6.16, entryPrice: 1, currentPrice: 1 }
     ]
 };
 // ========== END OF DATA INPUT ========== //
@@ -153,7 +153,7 @@ const capitalData = [
     { date: "2025-08-13", capital: 7.6 },
     { date: "2025-08-14", capital: 7.6 },
     { date: "2025-08-15", capital: 7 },
-
+    { date: "2025-08-16", capital: 6.9 },
 
 ];
 

@@ -9,7 +9,7 @@ const data = {
             entryPrice: 118244,
             leverage: 100,
             marginUsed: 1.44,
-            currentPrice: 117670
+            currentPrice: 118118
         },
         // {
         //     pair: "BTC/USDT",
@@ -154,6 +154,8 @@ const capitalData = [
     { date: "2025-08-14", capital: 7.6 },
     { date: "2025-08-15", capital: 7 },
     { date: "2025-08-16", capital: 6.9 },
+    { date: "2025-08-16", capital: 7.44 },
+
 
 ];
 

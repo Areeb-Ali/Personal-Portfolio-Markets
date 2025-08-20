@@ -1,16 +1,16 @@
 // ========== DATA INPUT - EDIT THESE VALUES ========== //
 const data = {
     lastUpdated: new Date().toLocaleString(),
-    startingCapital: 4.2,
+    startingCapital: 22,
     activeTrades: [
-        {
-            pair: "BTC/USDT",
-            direction: "long",
-            entryPrice: 116951,
-            leverage: 100,
-            marginUsed: 2.9,
-            currentPrice: 115112
-        },
+        // {
+        //     pair: "BTC/USDT",
+        //     direction: "long",
+        //     entryPrice: 116951,
+        //     leverage: 100,
+        //     marginUsed: 2.9,
+        //     currentPrice: 115112
+        // },
         // {
         //     pair: "BTC/USDT",
         //     direction: "long",
@@ -21,7 +21,7 @@ const data = {
         // }
     ],
     spotInvestments: [
-        { asset: "USDT", quantity: 4.7, entryPrice: 1, currentPrice: 1 }
+        { asset: "USDT", quantity: 21.29, entryPrice: 1, currentPrice: 1 }
     ]
 };
 // ========== END OF DATA INPUT ========== //
@@ -140,23 +140,8 @@ renderSpotInvestments();
 
 // ========== CAPITAL CHART ========== //
 const capitalData = [
-    { date: "2025-08-03", capital: 4.2 },
-    { date: "2025-08-04", capital: 4.1 },
-    { date: "2025-08-05", capital: 3.6 },
-    { date: "2025-08-06", capital: 5 },
-    { date: "2025-08-07", capital: 5.49 },
-    { date: "2025-08-08", capital: 5.41 },
-    { date: "2025-08-09", capital: 6.0 },
-    { date: "2025-08-10", capital: 6.0 },
-    { date: "2025-08-11", capital: 3 },
-    { date: "2025-08-12", capital: 6.19 },
-    { date: "2025-08-13", capital: 7.6 },
-    { date: "2025-08-14", capital: 7.6 },
-    { date: "2025-08-15", capital: 7 },
-    { date: "2025-08-16", capital: 6.9 },
-    { date: "2025-08-17", capital: 7.44 },
-    { date: "2025-08-18", capital: 3 },
-
+    { date: "2025-08-19", capital: 22 },
+    { date: "2025-08-20", capital: 21.29 },
 
 ];
 
@@ -244,49 +229,49 @@ toggleBtn.addEventListener('click', () => {
 const tradeHistory = [
     {
         date: "2025-08-04",
-        pair: "BTC/USDT",
-        direction: "long",
-        entryPrice: 114415,
-        exitPrice: 114866,
-        result: "+39.46%",
-        twitterLink: "https://x.com/areebithink/status/1952310045871648955"
+        pair: "SOL/USDT",
+        direction: "Short",
+        entryPrice: 183.82,
+        exitPrice: 186.98,
+        result: "-171%",
+        twitterLink: "https://x.com/areebithink/status/1958240753899159684"
     },
-    {
-        date: "2025-08-05",
-        pair: "BTC/USDT",
-        direction: "long",
-        entryPrice: 113060,
-        exitPrice: 114866,
-        result: "+159.76%",
-        twitterLink: "https://x.com/areebithink/status/1952753924705784053"
-    },
-    {
-        date: "2025-08-07",
-        pair: "BTC/USDT",
-        direction: "long",
-        entryPrice: 114993,
-        exitPrice: 116070,
-        result: "+93.66%",
-        twitterLink: "https://x.com/areebithink/status/1953383104510583239"
-    },
-    {
-        date: "2025-08-08",
-        pair: "BTC/USDT",
-        direction: "long",
-        entryPrice: 116591,
-        exitPrice: 117754,
-        result: "+99.71%",
-        twitterLink: "https://x.com/areebithink/status/1953763180863242590"
-    }, ,
-    {
-        date: "2025-08-13",
-        pair: "BTC/USDT",
-        direction: "long",
-        entryPrice: 119492,
-        exitPrice: 120692,
-        result: "+100%",
-        twitterLink: "https://x.com/areebithink/status/1954869913748668595"
-    },
+    // {
+    //     date: "2025-08-05",
+    //     pair: "BTC/USDT",
+    //     direction: "long",
+    //     entryPrice: 113060,
+    //     exitPrice: 114866,
+    //     result: "+159.76%",
+    //     twitterLink: "https://x.com/areebithink/status/1952753924705784053"
+    // },
+    // {
+    //     date: "2025-08-07",
+    //     pair: "BTC/USDT",
+    //     direction: "long",
+    //     entryPrice: 114993,
+    //     exitPrice: 116070,
+    //     result: "+93.66%",
+    //     twitterLink: "https://x.com/areebithink/status/1953383104510583239"
+    // },
+    // {
+    //     date: "2025-08-08",
+    //     pair: "BTC/USDT",
+    //     direction: "long",
+    //     entryPrice: 116591,
+    //     exitPrice: 117754,
+    //     result: "+99.71%",
+    //     twitterLink: "https://x.com/areebithink/status/1953763180863242590"
+    // }, ,
+    // {
+    //     date: "2025-08-13",
+    //     pair: "BTC/USDT",
+    //     direction: "long",
+    //     entryPrice: 119492,
+    //     exitPrice: 120692,
+    //     result: "+100%",
+    //     twitterLink: "https://x.com/areebithink/status/1954869913748668595"
+    // },
 ];
 
 const renderTradeHistory = () => {
